@@ -91,10 +91,68 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
     </div>
   </footer>
 
-  <!-- Competition Modal (populated later) -->
+  <!-- Competition Modal -->
   <div id="competition-modal" class="modal" hidden>
-    <div class="modal-overlay"></div>
+    <div class="modal-overlay" id="modalOverlay"></div>
     <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      <h2 class="modal-title">Competition Application</h2>
+
+      <form
+        name="competition"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thank-you/"
+        class="competition-form"
+      >
+        <input type="hidden" name="form-name" value="competition" />
+        <p class="visually-hidden">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone *</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="competition">Competition *</label>
+          <select id="competition" name="competition" required>
+            <option value="">Select a competition...</option>
+            <option value="Macau Open 2026">Macau Open 2026</option>
+            <option value="Club Championship 2026">Club Championship 2026</option>
+            <option value="Member-Guest Tournament">Member-Guest Tournament</option>
+            <option value="Junior Open">Junior Open</option>
+            <option value="Other">Other / General Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="handicap">Handicap / GHIN (if applicable)</label>
+          <input type="text" id="handicap" name="handicap" placeholder="e.g. 12.5" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit">SUBMIT APPLICATION</button>
+
+        <p class="form-note">We'll email you to confirm your application.</p>
+      </form>
     </div>
   </div>
 
@@ -215,13 +273,84 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
     }
   </style>
 
-  <script>
-    const modal = document.getElementById('competition-modal');
-    const openBtn = document.getElementById('openCompetitionModal');
-    if (openBtn && modal) {
-      openBtn.addEventListener('click', () => modal.classList.add('open'));
-      modal.querySelector('.modal-overlay')?.addEventListener('click', () => modal.classList.remove('open'));
+  <style>
+    .modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-muted);
     }
+    .modal-title {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      padding-right: 2rem;
+    }
+
+    .competition-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.25rem; }
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--color-dark);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: var(--color-white);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(13,94,110,0.2);
+    }
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-group { flex: 1; }
+    .form-submit { width: 100%; padding: 0.75rem; font-size: 0.9rem; }
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+      text-align: center;
+      margin: 0;
+    }
+
+    @media (max-width: 500px) {
+      .form-row { flex-direction: column; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      const modal = document.getElementById('competition-modal');
+      if (!modal) return;
+
+      const overlay = document.getElementById('modalOverlay');
+      const closeBtn = document.getElementById('closeModal');
+
+      function openModal() { modal.classList.add('open'); }
+      function closeModal() { modal.classList.remove('open'); }
+
+      document.querySelectorAll('[id$="ApplyBtn"], #openCompetitionModal').forEach(function(btn) {
+        btn.addEventListener('click', openModal);
+      });
+
+      overlay?.addEventListener('click', closeModal);
+      closeBtn?.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    })();
   </script>
 </body>
 </html>
