@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Competitions" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>Competitions</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>Macau Open 2026</h3>
+        <p>Our premier annual tournament. Open to all golfers with a valid handicap. Registration now open.</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">Apply Now</button>
+      </div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>Club Championship</h3>
+        <p>Members-only stroke play championship. Defend your title or challenge for the crown.</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">Apply Now</button>
+      </div>
+      <div class="card">
+        <h3>Member-Guest Tournament</h3>
+        <p>Bring a guest and compete in our popular pairs event. Dinner and prizes included.</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">Apply Now</button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

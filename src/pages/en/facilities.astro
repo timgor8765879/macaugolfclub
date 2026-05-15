@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Facilities" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>Facilities</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1rem;"><h3>Clubhouse</h3><p>Our modern clubhouse features locker rooms, lounges, and panoramic views of the course.</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>Dining</h3><p>Enjoy fine dining at our restaurant, or relax with a drink at the 19th hole bar.</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>Pro Shop</h3><p>Fully stocked with the latest equipment, apparel, and accessories from top brands.</p></div>
+      <div class="card"><h3>Practice Areas</h3><p>Driving range, putting green, chipping area, and PGA professional instruction available.</p></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

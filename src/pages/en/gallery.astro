@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Gallery" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>Gallery</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p>Explore our course and facilities through photos. More images coming soon.</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Course View</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Clubhouse</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Events</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Practice Area</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Tournaments</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">Dining</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+  @media (max-width: 768px) {
+    .container > div { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>

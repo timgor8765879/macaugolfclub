@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="News & Events" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>News & Events</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>Course Renovation Complete</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">May 2026</p>
+        <p>Our back nine has been refreshed with new bunkering and greens. The renovated holes are now open for play.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>Junior Program Launches</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">April 2026</p>
+        <p>Introducing our new junior development program, designed to nurture the next generation of Macau golfers.</p>
+      </div>
+      <div class="card">
+        <h3>Macau Open 2026 Announced</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">March 2026</p>
+        <p>Save the date! This year's Macau Open will be bigger than ever. Registration details coming soon.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

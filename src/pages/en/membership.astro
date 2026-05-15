@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Membership" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>Membership</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>Why Join?</h2>
+      <p>Membership at Macau Golf Club opens the door to an exceptional golfing lifestyle. Enjoy unlimited access to our championship course, exclusive events, and a welcoming community of fellow golf enthusiasts.</p>
+      <h2>Membership Categories</h2>
+      <div class="card" style="margin-bottom: 1rem;"><h3>Full Membership</h3><p>Unlimited golf, access to all club facilities, voting rights, and guest privileges.</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>Junior Membership</h3><p>For golfers under 18. Full course access with developmental programs.</p></div>
+      <div class="card"><h3>Corporate Membership</h3><p>Entertain clients and reward employees with corporate golf privileges.</p></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

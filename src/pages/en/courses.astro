@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Courses" lang="en">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>Our Courses</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>Championship Course</h2>
+      <p>Our flagship 18-hole championship course offers a challenging yet rewarding experience. Designed to blend with the natural Macau landscape, each hole presents a unique test of skill and strategy.</p>
+      <h2>Practice Facilities</h2>
+      <p>Warm up at our driving range, practice your short game on our chipping and putting greens, or take a lesson with one of our PGA professionals.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>
