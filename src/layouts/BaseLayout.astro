@@ -1,0 +1,227 @@
+---
+export interface Props {
+  title: string;
+  lang: 'en' | 'zh';
+  description?: string;
+}
+
+const { title, lang, description } = Astro.props;
+const isEn = lang === 'en';
+
+const nav = {
+  home: isEn ? 'Home' : '首頁',
+  about: isEn ? 'About' : '關於我們',
+  courses: isEn ? 'Courses' : '球場',
+  competitions: isEn ? 'Competitions' : '比賽',
+  membership: isEn ? 'Membership' : '會籍',
+  visitors: isEn ? 'Visitors' : '訪客',
+  facilities: isEn ? 'Facilities' : '設施',
+  gallery: isEn ? 'Gallery' : '相簿',
+  news: isEn ? 'News' : '新聞',
+  contact: isEn ? 'Contact' : '聯絡我們',
+};
+
+const apply = isEn ? 'APPLY TO COMPETITION' : '比賽報名';
+const otherLang = isEn ? 'zh' : 'en';
+const otherLabel = isEn ? '中文' : 'EN';
+
+function localPath(path: string) {
+  return `/${lang}${path}`;
+}
+
+function otherLangPath(path: string) {
+  return `/${otherLang}${path}`;
+}
+
+const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} — Macau Golf Club</title>
+  <meta name="description" content={description || title} />
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href={localPath('/')} class="nav-logo">
+          <span class="nav-logo-text">Macau Golf Club</span>
+          <span class="nav-logo-sub">澳門高爾夫球會</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href={localPath('/')}>{nav.home}</a></li>
+          <li><a href={localPath('/about/')}>{nav.about}</a></li>
+          <li><a href={localPath('/courses/')}>{nav.courses}</a></li>
+          <li><a href={localPath('/competitions/')}>{nav.competitions}</a></li>
+          <li><a href={localPath('/membership/')}>{nav.membership}</a></li>
+          <li><a href={localPath('/visitors/')}>{nav.visitors}</a></li>
+          <li><a href={localPath('/facilities/')}>{nav.facilities}</a></li>
+          <li><a href={localPath('/gallery/')}>{nav.gallery}</a></li>
+          <li><a href={localPath('/news/')}>{nav.news}</a></li>
+          <li><a href={localPath('/contact/')}>{nav.contact}</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn btn-cta nav-cta" id="openCompetitionModal">{apply}</button>
+          <a href={otherLangPath(currentPath)} class="nav-lang">{otherLabel}</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p>Macau Golf Club</p>
+        <p>澳門高爾夫球會</p>
+      </div>
+      <div class="footer-links">
+        <a href={localPath('/contact/')}>{isEn ? 'Contact' : '聯絡我們'}</a>
+        <a href="#">{isEn ? 'Privacy Policy' : '私隱政策'}</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Macau Golf Club</p>
+    </div>
+  </footer>
+
+  <!-- Competition Modal (populated later) -->
+  <div id="competition-modal" class="modal" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+    </div>
+  </div>
+
+  <style>
+    .nav {
+      background: var(--color-dark);
+      color: var(--color-white);
+      padding: 0.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-logo {
+      text-decoration: none;
+      color: var(--color-white);
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: block;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .nav-logo-sub {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--color-accent);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+    .nav-links a {
+      color: var(--color-white);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: var(--radius);
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+      text-decoration: none;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .nav-cta {
+      font-size: 0.7rem;
+      padding: 5px 10px;
+    }
+    .nav-lang {
+      color: var(--color-accent);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .footer {
+      background: var(--color-dark);
+      color: var(--color-white);
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .footer-brand p { margin: 0; }
+    .footer-links { display: flex; gap: 1rem; }
+    .footer-links a { color: var(--color-accent); }
+    .footer-copy { color: rgba(255,255,255,0.5); margin: 0; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+    }
+    .modal.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      position: relative;
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 520px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner { flex-wrap: wrap; }
+      .nav-links { order: 3; width: 100%; justify-content: center; }
+      .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+
+  <script>
+    const modal = document.getElementById('competition-modal');
+    const openBtn = document.getElementById('openCompetitionModal');
+    if (openBtn && modal) {
+      openBtn.addEventListener('click', () => modal.classList.add('open'));
+      modal.querySelector('.modal-overlay')?.addEventListener('click', () => modal.classList.remove('open'));
+    }
+  </script>
+</body>
+</html>
