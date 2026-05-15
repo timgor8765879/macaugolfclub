@@ -55,6 +55,10 @@ a {
   text-decoration: none;
 }
 a:hover { text-decoration: underline; }
+a:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
 
 img {
   max-width: 100%;
