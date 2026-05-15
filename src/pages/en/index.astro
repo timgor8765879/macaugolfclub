@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home" lang="en" description="Macau Golf Club — a championship experience in the heart of Macau">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Macau Golf Club</h1>
+      <p class="hero-tagline">A championship experience in the heart of Macau</p>
+    </div>
+  </section>
+
+  <!-- Welcome -->
+  <section class="section">
+    <div class="container">
+      <h2>Welcome to Macau Golf Club</h2>
+      <p>Nestled in Macau's stunning landscape, our club offers world-class golfing, exceptional facilities, and a warm community. Whether you're a seasoned golfer or new to the game, Macau Golf Club welcomes you.</p>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="section" style="background: var(--color-white);">
+    <div class="container">
+      <div class="quick-links">
+        <a href="/en/courses/" class="card quick-link">
+          <h3>Our Courses</h3>
+          <p>Explore Macau's finest fairways, designed for golfers of every level.</p>
+        </a>
+        <a href="/en/competitions/" class="card quick-link">
+          <h3>Competitions</h3>
+          <p>View upcoming tournaments and events. Test your skills.</p>
+        </a>
+        <a href="/en/membership/" class="card quick-link">
+          <h3>Membership</h3>
+          <p>Join our community and enjoy exclusive benefits year-round.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competition Banner -->
+  <section class="section competition-banner">
+    <div class="container">
+      <h2>Upcoming: Macau Open 2026</h2>
+      <p>Registration is now open. Secure your spot in Macau's premier golf tournament.</p>
+      <button class="btn btn-cta" id="heroApplyBtn">Apply Now</button>
+    </div>
+  </section>
+
+  <!-- News Snippet -->
+  <section class="section">
+    <div class="container">
+      <h2>Latest News</h2>
+      <div class="news-grid">
+        <div class="card">
+          <h3>Course Renovation Complete</h3>
+          <p>Our back nine has been refreshed with new bunkering and greens. Come play a round and see the changes.</p>
+        </div>
+        <div class="card">
+          <h3>Junior Program Launches</h3>
+          <p>Introducing our new junior development program — building the next generation of Macau golfers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 70vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><ellipse cx="600" cy="300" rx="500" ry="200" fill="%236aa84f"/><ellipse cx="300" cy="500" rx="300" ry="120" fill="%233d6b3a"/></svg>') center/cover;
+    opacity: 0.3;
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--color-white);
+    padding: 2rem;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 200;
+  }
+  .hero-tagline {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .quick-link {
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .quick-link:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+  }
+
+  .competition-banner {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    text-align: center;
+  }
+  .competition-banner h2 { color: var(--color-white); }
+  .competition-banner p { color: rgba(255,255,255,0.8); }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content h1 { font-size: 2rem; }
+    .quick-links { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.getElementById('heroApplyBtn')?.addEventListener('click', () => {
+    document.getElementById('competition-modal')?.classList.add('open');
+  });
+</script>
