@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="首頁" lang="zh" description="澳門高爾夫球會 — 澳門中心的冠軍級高爾夫體驗">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>澳門高爾夫球會</h1>
+      <p class="hero-tagline">在澳門中心，享受冠軍級高爾夫體驗</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>歡迎來到澳門高爾夫球會</h2>
+      <p>坐落於澳門迷人景觀之中，我們提供世界級高爾夫球場、卓越設施和溫暖的社區。無論您是經驗豐富的球手還是高爾夫新手，澳門高爾夫球會都歡迎您。</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-white);">
+    <div class="container">
+      <div class="quick-links">
+        <a href="/zh/courses/" class="card quick-link">
+          <h3>我們的球場</h3>
+          <p>探索澳門最優美的球道，適合各級別的球手。</p>
+        </a>
+        <a href="/zh/competitions/" class="card quick-link">
+          <h3>比賽</h3>
+          <p>查看即將舉行的賽事和活動，測試您的球技。</p>
+        </a>
+        <a href="/zh/membership/" class="card quick-link">
+          <h3>會籍</h3>
+          <p>加入我們的社區，全年享受獨家禮遇。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section competition-banner">
+    <div class="container">
+      <h2>即將舉行：2026澳門公開賽</h2>
+      <p>現已接受報名。把握機會參加澳門頂級高爾夫賽事。</p>
+      <button class="btn btn-cta" id="heroApplyBtn">立即報名</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>最新消息</h2>
+      <div class="news-grid">
+        <div class="card">
+          <h3>球場翻新完成</h3>
+          <p>我們的後九洞已增設新沙坑和果嶺。歡迎來打一場球，感受變化。</p>
+        </div>
+        <div class="card">
+          <h3>青少年計劃啟動</h3>
+          <p>推出全新青少年發展計劃——培養澳門下一代高爾夫球手。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 70vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><ellipse cx="600" cy="300" rx="500" ry="200" fill="%236aa84f"/><ellipse cx="300" cy="500" rx="300" ry="120" fill="%233d6b3a"/></svg>') center/cover;
+    opacity: 0.3;
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--color-white);
+    padding: 2rem;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    color: var(--color-white);
+    font-weight: 200;
+  }
+  .hero-tagline {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .quick-link {
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .quick-link:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+  }
+
+  .competition-banner {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    text-align: center;
+  }
+  .competition-banner h2 { color: var(--color-white); }
+  .competition-banner p { color: rgba(255,255,255,0.8); }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content h1 { font-size: 2rem; }
+    .quick-links { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.getElementById('heroApplyBtn')?.addEventListener('click', () => {
+    document.getElementById('competition-modal')?.classList.add('open');
+  });
+</script>
