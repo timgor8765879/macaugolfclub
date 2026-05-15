@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="會籍" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>會籍</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>為何加入？</h2>
+      <p>成為澳門高爾夫球會會員，開啟卓越的高爾夫生活方式。無限制使用我們的錦標賽球場、參加獨家活動，並加入一個熱情好客的高爾夫愛好者社區。</p>
+      <h2>會籍類別</h2>
+      <div class="card" style="margin-bottom: 1rem;"><h3>正式會籍</h3><p>無限制打球、使用所有球會設施、投票權和嘉賓禮遇。</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>青少年會籍</h3><p>專為18歲以下的球手而設。全面的球場使用權和發展計劃。</p></div>
+      <div class="card"><h3>企業會籍</h3><p>以企業高爾夫禮遇款待客戶和獎勵員工。</p></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

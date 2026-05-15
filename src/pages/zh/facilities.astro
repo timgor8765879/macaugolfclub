@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="設施" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>設施</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1rem;"><h3>會所</h3><p>我們的現代化會所設有更衣室、休息區和球場全景。</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>餐飲</h3><p>在我們的餐廳享受美食，或在第19洞酒吧放鬆小酌。</p></div>
+      <div class="card" style="margin-bottom: 1rem;"><h3>專賣店</h3><p>備有各大品牌最新的裝備、服裝和配件。</p></div>
+      <div class="card"><h3>練習區</h3><p>練習場、推桿果嶺、切球區，以及PGA專業教練指導。</p></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

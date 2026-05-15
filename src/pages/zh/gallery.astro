@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="相簿" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>相簿</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p>通過照片探索我們的球場和設施。更多圖片即將推出。</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">球場景觀</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">會所</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">活動</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">練習區</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">比賽</div>
+        <div class="card" style="text-align: center; padding: 3rem 1rem;">餐飲</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+  @media (max-width: 768px) {
+    .container > div { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>

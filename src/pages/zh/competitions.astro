@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="比賽" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>比賽</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>2026澳門公開賽</h3>
+        <p>我們首屈一指的年度賽事。歡迎持有有效差點的球手參加。現已接受報名。</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">立即報名</button>
+      </div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>球會錦標賽</h3>
+        <p>會員專屬的比桿賽。衛冕您的冠軍頭銜，或挑戰冠軍寶座。</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">立即報名</button>
+      </div>
+      <div class="card">
+        <h3>會員嘉賓賽</h3>
+        <p>帶同嘉賓參加我們受歡迎的雙人賽事。包括晚宴和獎品。</p>
+        <button class="btn btn-cta" style="margin-top: 0.5rem;" onclick="document.getElementById('competition-modal').classList.add('open')">立即報名</button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

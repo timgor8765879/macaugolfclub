@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="關於我們" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>關於我們</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p>澳門高爾夫球會以對高爾夫的熱愛而成立，一直是澳門體育界的基石。我們的球會融合了傳統與現代設施，為會員和訪客提供卓越的高爾夫體驗。</p>
+      <p>坐落於優美的自然環境中，我們的球場為各級別的球手提供具有挑戰性的比賽體驗，並配以一流會所設施。</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="新聞" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>新聞與活動</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>球場翻新完成</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">2026年5月</p>
+        <p>我們的後九洞已增設新沙坑和果嶺。翻新後的球洞現已開放打球。</p>
+      </div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3>青少年計劃啟動</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">2026年4月</p>
+        <p>推出全新青少年發展計劃，旨在培養澳門下一代高爾夫球手。</p>
+      </div>
+      <div class="card">
+        <h3>2026澳門公開賽公佈</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem;">2026年3月</p>
+        <p>請記下日期！今年的澳門公開賽將比以往更盛大。報名詳情稍後公佈。</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+</style>

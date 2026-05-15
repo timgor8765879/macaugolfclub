@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="聯絡我們" lang="zh">
+  <section class="section page-hero">
+    <div class="container">
+      <h1>聯絡我們</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+      <div>
+        <h2>聯絡方式</h2>
+        <p><strong>地址：</strong><br>澳門高爾夫球會<br>路環石排灣馬路<br>澳門</p>
+        <p><strong>電話：</strong><br>+853 2888 1234</p>
+        <p><strong>電郵：</strong><br>info@macaugolfclub.com</p>
+      </div>
+      <div>
+        <h2>發送訊息</h2>
+        <form name="contact-zh" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/">
+          <input type="hidden" name="form-name" value="contact-zh" />
+          <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">姓名 *</label>
+            <input type="text" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius);" />
+          </div>
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">電郵 *</label>
+            <input type="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius);" />
+          </div>
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">訊息 *</label>
+            <textarea name="message" required rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius);"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">發送訊息</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 3rem 0;
+  }
+  .page-hero h1 { color: var(--color-white); }
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr !important; }
+  }
+</style>
