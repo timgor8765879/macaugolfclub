@@ -21,7 +21,7 @@ const nav = {
   contact: isEn ? 'Contact' : '聯絡我們',
 };
 
-const apply = isEn ? 'APPLY TO COMPETITION' : '比賽報名';
+const cta = isEn ? 'Enquire' : '查詢';
 const otherLang = isEn ? 'zh' : 'en';
 const otherLabel = isEn ? '中文' : 'EN';
 
@@ -43,6 +43,7 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} — Macau Golf Club</title>
   <meta name="description" content={description || title} />
+  <link rel="icon" type="image/jpeg" href="/macaugolfclublogo.jpg" />
   <link rel="stylesheet" href="/styles/global.css" />
 </head>
 <body>
@@ -50,6 +51,7 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
     <nav class="nav" aria-label="Main navigation">
       <div class="container nav-inner">
         <a href={localPath('/')} class="nav-logo">
+          <img src="/macaugolfclublogo.jpg" alt="Macau Golf Club" class="nav-logo-img" width="36" height="36" />
           <span class="nav-logo-text">Macau Golf Club</span>
           <span class="nav-logo-sub">澳門高爾夫球會</span>
         </a>
@@ -66,7 +68,7 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
           <li><a href={localPath('/contact/')}>{nav.contact}</a></li>
         </ul>
         <div class="nav-actions">
-          <button class="btn btn-cta nav-cta" id="openCompetitionModal">{apply}</button>
+          <button class="btn btn-cta nav-cta" id="openCompetitionModal">{cta}</button>
           <a href={otherLangPath(currentPath)} class="nav-lang">{otherLabel}</a>
         </div>
       </div>
@@ -91,26 +93,14 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
     </div>
   </footer>
 
-  <!-- Competition Modal -->
+  <!-- Contact Modal -->
   <div id="competition-modal" class="modal" hidden>
     <div class="modal-overlay" id="modalOverlay"></div>
     <div class="modal-content">
       <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
-      <h2 class="modal-title">Competition Application</h2>
+      <h2 class="modal-title">Contact Us</h2>
 
-      <form
-        name="competition"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/thank-you/"
-        class="competition-form"
-      >
-        <input type="hidden" name="form-name" value="competition" />
-        <p class="visually-hidden">
-          <label>Don't fill this out: <input name="bot-field" /></label>
-        </p>
-
+      <form id="contact-form" class="contact-form">
         <div class="form-group">
           <label for="fullName">Full Name *</label>
           <input type="text" id="fullName" name="fullName" required />
@@ -128,30 +118,18 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
         </div>
 
         <div class="form-group">
-          <label for="competition">Competition *</label>
-          <select id="competition" name="competition" required>
-            <option value="">Select a competition...</option>
-            <option value="Macau Open 2026">Macau Open 2026</option>
-            <option value="Club Championship 2026">Club Championship 2026</option>
-            <option value="Member-Guest Tournament">Member-Guest Tournament</option>
-            <option value="Junior Open">Junior Open</option>
-            <option value="Other">Other / General Inquiry</option>
-          </select>
+          <label for="address">Address *</label>
+          <input type="text" id="address" name="address" required />
         </div>
 
         <div class="form-group">
-          <label for="handicap">Handicap / GHIN (if applicable)</label>
-          <input type="text" id="handicap" name="handicap" placeholder="e.g. 12.5" />
+          <label for="others">Others (optional)</label>
+          <textarea id="others" name="others" rows="3"></textarea>
         </div>
 
-        <div class="form-group">
-          <label for="message">Message (optional)</label>
-          <textarea id="message" name="message" rows="3"></textarea>
-        </div>
+        <button type="submit" class="btn btn-primary form-submit">Send</button>
 
-        <button type="submit" class="btn btn-primary form-submit">SUBMIT APPLICATION</button>
-
-        <p class="form-note">We'll email you to confirm your application.</p>
+        <p class="form-message" id="formFeedback" hidden></p>
       </form>
     </div>
   </div>
@@ -174,6 +152,13 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
       text-decoration: none;
       color: var(--color-white);
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo-img {
+      border-radius: 50%;
+      object-fit: cover;
     }
     .nav-logo-text {
       display: block;
@@ -290,7 +275,7 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
       padding-right: 2rem;
     }
 
-    .competition-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.25rem; }
     .form-group label {
       font-weight: 600;
@@ -298,7 +283,6 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
       color: var(--color-dark);
     }
     .form-group input,
-    .form-group select,
     .form-group textarea {
       padding: 0.6rem 0.75rem;
       border: 1px solid var(--color-border);
@@ -308,7 +292,6 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
       background: var(--color-white);
     }
     .form-group input:focus,
-    .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
       border-color: var(--color-primary);
@@ -317,12 +300,16 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
     .form-row { display: flex; gap: 1rem; }
     .form-row .form-group { flex: 1; }
     .form-submit { width: 100%; padding: 0.75rem; font-size: 0.9rem; }
-    .form-note {
-      font-size: 0.75rem;
-      color: var(--color-muted);
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-message {
+      font-size: 0.85rem;
       text-align: center;
       margin: 0;
+      padding: 0.5rem;
+      border-radius: var(--radius);
     }
+    .form-message-success { background: #e8f5e9; color: #2e7d32; }
+    .form-message-error { background: #fbe9e7; color: #c62828; }
 
     @media (max-width: 500px) {
       .form-row { flex-direction: column; }
@@ -336,6 +323,9 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
 
       const overlay = document.getElementById('modalOverlay');
       const closeBtn = document.getElementById('closeModal');
+      const form = document.getElementById('contact-form');
+      const feedback = document.getElementById('formFeedback');
+      const submitBtn = form?.querySelector('.form-submit');
 
       function openModal() { modal.classList.add('open'); }
       function closeModal() { modal.classList.remove('open'); }
@@ -349,6 +339,40 @@ const currentPath = Astro.url.pathname.replace(/^\/(en|zh)/, '') || '/';
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeModal();
+      });
+
+      form?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        feedback.hidden = true;
+
+        try {
+          const data = Object.fromEntries(new FormData(form));
+          const res = await fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          if (res.ok) {
+            feedback.textContent = 'Sent! We\'ll get back to you soon.';
+            feedback.className = 'form-message form-message-success';
+            feedback.hidden = false;
+            form.reset();
+            setTimeout(closeModal, 2500);
+          } else {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.message || 'Something went wrong');
+          }
+        } catch (err) {
+          feedback.textContent = err.message || 'Failed to send. Please try again.';
+          feedback.className = 'form-message form-message-error';
+          feedback.hidden = false;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send';
+        }
       });
     })();
   </script>
