@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local Netlify folder
+.netlify
+
+# Claude Code local config
+.claude/
+
+# Superpowers temp files
+.superpowers/
